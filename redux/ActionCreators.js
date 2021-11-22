@@ -31,6 +31,32 @@ export const addComments = comments => ({
     payload: comments
 });
 
+export const addComment = comment => ({
+    type: ActionTypes.ADD_COMMENT,
+    payload: comment
+});
+
+export const postComment = (campsiteId,author,rating,text) => dispatch => {
+    console.log("Post Comment",campsiteId, rating, author, text);
+    const d = new Date();
+    let date = d.toISOString();
+
+    const newComment ={
+        campsiteId: campsiteId,
+        rating: rating,
+        author: author,
+        text: text,
+        date: date
+    };
+
+    setTimeout(() => {
+        dispatch(addComment(newComment))
+        console.log("Set Timeout dispatch",newComment);
+    }, 2000);
+
+}
+
+
 export const fetchCampsites = () => dispatch => {
 
     dispatch(campsitesLoading());
@@ -152,3 +178,8 @@ export const addFavorite = campsiteId => ({
     type: ActionTypes.ADD_FAVORITE,
     payload: campsiteId
 });
+
+export const deleteFavorite = campsiteId => ({
+    type: ActionTypes.DELETE_FAVORITE,
+    payload: campsiteId
+})

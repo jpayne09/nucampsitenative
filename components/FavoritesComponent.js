@@ -116,4 +116,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default connect(mapStateToProps)(Favorites);
+export default connect(mapStateToProps, mapDispatchToProps)(Favorites);
